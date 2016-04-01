@@ -24,17 +24,17 @@ namespace SA
 			foreach( var debugValue in debugUtility._debugValues ) {
 				var v = debugValue.Value;
 				switch( debugValue.Value.valueType ) {
-				case DebugUtility.DebugValueType.Int:
+				case DebugUtility.__DebugValueType.Int:
 					v.intValue = EditorGUILayout.IntField( debugValue.Key, debugValue.Value.intValue );
 					break;
-				case DebugUtility.DebugValueType.Float:
+				case DebugUtility.__DebugValueType.Float:
 					if( debugValue.Key.Contains( "Rate" ) ) {
 						v.floatValue = EditorGUILayout.Slider( debugValue.Key, debugValue.Value.floatValue, 0.0f, 1.0f );
 					} else {
 						v.floatValue = EditorGUILayout.FloatField( debugValue.Key, debugValue.Value.floatValue );
 					}
 					break;
-				case DebugUtility.DebugValueType.Bool:
+				case DebugUtility.__DebugValueType.Bool:
 					v.boolValue = EditorGUILayout.Toggle( debugValue.Key, debugValue.Value.boolValue );
 					break;
 				}

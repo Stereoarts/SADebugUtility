@@ -152,16 +152,148 @@ namespace SA
 		public const float _debugPointDefaultSize = 0.02f;
 
 		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugValue( string name, ref int v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugValue( name, ref v );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugValue( string name, ref float v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugValue( name, ref v );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugValue( string name, ref bool v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugValue( name, ref v );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void ClearDebugPoints()
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._ClearDebugPoints();
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugCube( Vector3 pos )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugCube( pos );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugCube( Vector3 pos, Color color, float size = SA.DebugUtility._debugPointDefaultSize )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugCube( pos, color, size );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugSphere( Vector3 pos )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugSphere( pos );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugSphere( Vector3 pos, Color color, float size = SA.DebugUtility._debugPointDefaultSize )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugSphere( pos, color, size );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugWireCube( Vector3 pos )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugWireCube( pos );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugWireCube( Vector3 pos, Color color, float size = SA.DebugUtility._debugPointDefaultSize )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugWireCube( pos, color, size );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugWireSphere( Vector3 pos )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugWireSphere( pos );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugWireSphere( Vector3 pos, Color color, float size = SA.DebugUtility._debugPointDefaultSize )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugWireSphere( pos, color, size );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
 		public void _DebugValue( string name, ref int v )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
-			DebugValue debugValue;
+			__DebugValue debugValue;
 			if( _debugValues.TryGetValue( name, out debugValue ) ) {
 				v = debugValue.intValue;
 				return;
 			}
 
-			_debugValues.Add( name, new DebugValue( v ) );
+			_debugValues.Add( name, new __DebugValue( v ) );
 #endif
 		}
 
@@ -169,13 +301,13 @@ namespace SA
 		public void _DebugValue( string name, ref float v )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
-			DebugValue debugValue;
+			__DebugValue debugValue;
 			if( _debugValues.TryGetValue( name, out debugValue ) ) {
 				v = debugValue.floatValue;
 				return;
 			}
 
-			_debugValues.Add( name, new DebugValue( v ) );
+			_debugValues.Add( name, new __DebugValue( v ) );
 #endif
 		}
 
@@ -183,13 +315,13 @@ namespace SA
 		public void _DebugValue( string name, ref bool v )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
-			DebugValue debugValue;
+			__DebugValue debugValue;
 			if( _debugValues.TryGetValue( name, out debugValue ) ) {
 				v = debugValue.boolValue;
 				return;
 			}
 
-			_debugValues.Add( name, new DebugValue( v ) );
+			_debugValues.Add( name, new __DebugValue( v ) );
 #endif
 		}
 
@@ -205,7 +337,7 @@ namespace SA
 		public void _DebugCube( Vector3 pos )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
-			_debugPoints.Add( new DebugPoint( DebugPointType.Cube, pos ) );
+			_debugPoints.Add( new __DebugPoint( __DebugPointType.Cube, pos ) );
 #endif
 		}
 
@@ -213,7 +345,7 @@ namespace SA
 		public void _DebugCube( Vector3 pos, Color color, float size = _debugPointDefaultSize )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
-			_debugPoints.Add( new DebugPoint( DebugPointType.Cube, pos, color, size ) );
+			_debugPoints.Add( new __DebugPoint( __DebugPointType.Cube, pos, color, size ) );
 #endif
 		}
 
@@ -221,7 +353,7 @@ namespace SA
 		public void _DebugSphere( Vector3 pos )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
-			_debugPoints.Add( new DebugPoint( DebugPointType.Sphere, pos ) );
+			_debugPoints.Add( new __DebugPoint( __DebugPointType.Sphere, pos ) );
 #endif
 		}
 
@@ -229,7 +361,7 @@ namespace SA
 		public void _DebugSphere( Vector3 pos, Color color, float size = _debugPointDefaultSize )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
-			_debugPoints.Add( new DebugPoint( DebugPointType.Sphere, pos, color, size ) );
+			_debugPoints.Add( new __DebugPoint( __DebugPointType.Sphere, pos, color, size ) );
 #endif
 		}
 
@@ -237,7 +369,7 @@ namespace SA
 		public void _DebugWireCube( Vector3 pos )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
-			_debugPoints.Add( new DebugPoint( DebugPointType.WireCube, pos ) );
+			_debugPoints.Add( new __DebugPoint( __DebugPointType.WireCube, pos ) );
 #endif
 		}
 
@@ -245,7 +377,7 @@ namespace SA
 		public void _DebugWireCube( Vector3 pos, Color color, float size = _debugPointDefaultSize )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
-			_debugPoints.Add( new DebugPoint( DebugPointType.WireCube, pos, color, size ) );
+			_debugPoints.Add( new __DebugPoint( __DebugPointType.WireCube, pos, color, size ) );
 #endif
 		}
 
@@ -253,7 +385,7 @@ namespace SA
 		public void _DebugWireSphere( Vector3 pos )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
-			_debugPoints.Add( new DebugPoint( DebugPointType.WireSphere, pos ) );
+			_debugPoints.Add( new __DebugPoint( __DebugPointType.WireSphere, pos ) );
 #endif
 		}
 
@@ -261,7 +393,7 @@ namespace SA
 		public void _DebugWireSphere( Vector3 pos, Color color, float size = _debugPointDefaultSize )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
-			_debugPoints.Add( new DebugPoint( DebugPointType.WireSphere, pos, color, size ) );
+			_debugPoints.Add( new __DebugPoint( __DebugPointType.WireSphere, pos, color, size ) );
 #endif
 		}
 
@@ -295,48 +427,68 @@ namespace SA
 			return null;
 		}
 
-#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
-		public enum DebugValueType
+#if UNITY_EDITOR
+		static DebugUtility _instance; // for Singleton
+
+		static DebugUtility instance
+		{
+			get
+			{
+				if( _instance == null ) {
+					_instance = Object.FindObjectOfType<DebugUtility>();
+					if( _instance == null ) {
+						GameObject go = new GameObject("SADebugUtility");
+						_instance = go.AddComponent<DebugUtility>();
+						_instances.Add( go, _instance ); // Add directly.
+                        GameObject.DontDestroyOnLoad( go );
+					}
+				}
+
+				return _instance;
+			}
+		}
+
+		public enum __DebugValueType
 		{
 			Int,
 			Float,
 			Bool,
 		}
 
-		public class DebugValue
+		public class __DebugValue
 		{
-			public DebugValueType valueType;
+			public __DebugValueType valueType;
 
 			public int intValue;
 			public float floatValue;
 			public bool boolValue;
 
-			public DebugValue( int i )
+			public __DebugValue( int i )
 			{
-				this.valueType = DebugValueType.Int;
+				this.valueType = __DebugValueType.Int;
 				this.intValue = i;
 				this.floatValue = (float)i;
 				this.boolValue = (i != 0);
 			}
 
-			public DebugValue( float f )
+			public __DebugValue( float f )
 			{
-				this.valueType = DebugValueType.Float;
+				this.valueType = __DebugValueType.Float;
 				this.intValue = (int)f;
 				this.floatValue = f;
 				this.boolValue = (f != 0.0f);
 			}
 
-			public DebugValue( bool b )
+			public __DebugValue( bool b )
 			{
-				this.valueType = DebugValueType.Bool;
+				this.valueType = __DebugValueType.Bool;
 				this.intValue = b ? 1 : 0;
 				this.floatValue = b ? 1.0f : 0.0f;
 				this.boolValue = b;
 			}
 		}
 
-		public enum DebugPointType
+		public enum __DebugPointType
 		{
 			Cube,
 			Sphere,
@@ -344,16 +496,16 @@ namespace SA
 			WireSphere,
 		}
 
-		public struct DebugPoint
+		public struct __DebugPoint
 		{
 			static readonly Color _debugPointDefaultColor = Color.red;
 
-			public DebugPointType type;
+			public __DebugPointType type;
 			public Vector3 pos;
 			public Color color;
 			public float size;
 
-			public DebugPoint( DebugPointType type_, Vector3 pos_ )
+			public __DebugPoint( __DebugPointType type_, Vector3 pos_ )
 			{
 				type = type_;
 				pos = pos_;
@@ -361,7 +513,7 @@ namespace SA
 				size = _debugPointDefaultSize;
 			}
 
-			public DebugPoint( DebugPointType type_, Vector3 pos_, Color color_, float size_ = _debugPointDefaultSize )
+			public __DebugPoint( __DebugPointType type_, Vector3 pos_, Color color_, float size_ = _debugPointDefaultSize )
 			{
 				type = type_;
 				pos = pos_;
@@ -371,13 +523,17 @@ namespace SA
 		}
 
 		[System.NonSerialized]
-		public Dictionary<string, DebugValue> _debugValues = new Dictionary<string, DebugValue>();
+		public Dictionary<string, __DebugValue> _debugValues = new Dictionary<string, __DebugValue>();
 		[System.NonSerialized]
-		public List<DebugPoint> _debugPoints = new List<DebugPoint>();
+		public List<__DebugPoint> _debugPoints = new List<__DebugPoint>();
 
 		void OnDestroy()
 		{
 			_instances.Remove( this.gameObject );
+
+			if( _instance == this ) {
+				_instance = null;
+            }
 		}
 
 		static Dictionary<GameObject, DebugUtility> _instances = new Dictionary<GameObject, DebugUtility>();
@@ -385,19 +541,19 @@ namespace SA
 		void OnDrawGizmos()
 		{
 			for( int i = 0; i != _debugPoints.Count; ++i ) {
-				DebugPoint debugPoint = _debugPoints[i];
+				__DebugPoint debugPoint = _debugPoints[i];
 				Gizmos.color = debugPoint.color;
                 switch( debugPoint.type ) {
-				case DebugPointType.Cube:
+				case __DebugPointType.Cube:
 					Gizmos.DrawCube( debugPoint.pos, new Vector3( debugPoint.size, debugPoint.size, debugPoint.size ) );
 					break;
-				case DebugPointType.Sphere:
+				case __DebugPointType.Sphere:
 					Gizmos.DrawSphere( debugPoint.pos, debugPoint.size );
 					break;
-				case DebugPointType.WireCube:
+				case __DebugPointType.WireCube:
 					Gizmos.DrawWireCube( debugPoint.pos, new Vector3( debugPoint.size, debugPoint.size, debugPoint.size ) );
 					break;
-				case DebugPointType.WireSphere:
+				case __DebugPointType.WireSphere:
 					Gizmos.DrawWireSphere( debugPoint.pos, debugPoint.size );
 					break;
 				}
