@@ -12,6 +12,50 @@ using System.Collections.Generic;
 public static class SADebugUtilityExtention
 {
 	[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+	public static void DebugValue( this Component component, string name, int v )
+	{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+		SA.DebugUtility debugUtility = SA.DebugUtility.GetInstance( component );
+		if( debugUtility != null ) {
+			debugUtility._DebugValue( name, v );
+		}
+#endif
+	}
+
+	[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+	public static void DebugValue( this Component component, string name, float v )
+	{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+		SA.DebugUtility debugUtility = SA.DebugUtility.GetInstance( component );
+		if( debugUtility != null ) {
+			debugUtility._DebugValue( name, v );
+		}
+#endif
+	}
+
+	[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+	public static void DebugValue( this Component component, string name, bool v )
+	{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+		SA.DebugUtility debugUtility = SA.DebugUtility.GetInstance( component );
+		if( debugUtility != null ) {
+			debugUtility._DebugValue( name, v );
+		}
+#endif
+	}
+
+	[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+	public static void DebugValue( this Component component, string name, Vector3 v )
+	{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+		SA.DebugUtility debugUtility = SA.DebugUtility.GetInstance( component );
+		if( debugUtility != null ) {
+			debugUtility._DebugValue( name, v );
+		}
+#endif
+	}
+
+	[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
 	public static void DebugValue( this Component component, string name, ref int v )
 	{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
@@ -35,6 +79,17 @@ public static class SADebugUtilityExtention
 
 	[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
 	public static void DebugValue( this Component component, string name, ref bool v )
+	{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+		SA.DebugUtility debugUtility = SA.DebugUtility.GetInstance( component );
+		if( debugUtility != null ) {
+			debugUtility._DebugValue( name, ref v );
+		}
+#endif
+	}
+
+	[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+	public static void DebugValue( this Component component, string name, ref Vector3 v )
 	{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
 		SA.DebugUtility debugUtility = SA.DebugUtility.GetInstance( component );
@@ -152,6 +207,50 @@ namespace SA
 		public const float _debugPointDefaultSize = 0.02f;
 
 		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugValue( string name, int v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugValue( name, v );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugValue( string name, float v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugValue( name, v );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugValue( string name, bool v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugValue( name, v );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugValue( string name, Vector3 v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugValue( name, v );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
 		public static void DebugValue( string name, ref int v )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
@@ -175,6 +274,17 @@ namespace SA
 
 		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
 		public static void DebugValue( string name, ref bool v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			DebugUtility debugUtility = DebugUtility.instance;
+			if( debugUtility != null ) {
+				debugUtility._DebugValue( name, ref v );
+			}
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public static void DebugValue( string name, ref Vector3 v )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
 			DebugUtility debugUtility = DebugUtility.instance;
@@ -284,6 +394,62 @@ namespace SA
 		}
 
 		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public void _DebugValue( string name, int v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			__DebugValue debugValue;
+			if( _debugValues.TryGetValue( name, out debugValue ) ) {
+				debugValue.intValue = v;
+				return;
+			}
+
+			_debugValues.Add( name, new __DebugValue( v ) );
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public void _DebugValue( string name, float v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			__DebugValue debugValue;
+			if( _debugValues.TryGetValue( name, out debugValue ) ) {
+				debugValue.floatValue = v;
+				return;
+			}
+
+			_debugValues.Add( name, new __DebugValue( v ) );
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public void _DebugValue( string name, bool v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			__DebugValue debugValue;
+			if( _debugValues.TryGetValue( name, out debugValue ) ) {
+				debugValue.boolValue = v;
+				return;
+			}
+
+			_debugValues.Add( name, new __DebugValue( v ) );
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public void _DebugValue( string name, Vector3 v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			__DebugValue debugValue;
+			if( _debugValues.TryGetValue( name, out debugValue ) ) {
+				debugValue.vector3Value = v;
+				return;
+			}
+
+			_debugValues.Add( name, new __DebugValue( v ) );
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
 		public void _DebugValue( string name, ref int v )
 		{
 #if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
@@ -318,6 +484,20 @@ namespace SA
 			__DebugValue debugValue;
 			if( _debugValues.TryGetValue( name, out debugValue ) ) {
 				v = debugValue.boolValue;
+				return;
+			}
+
+			_debugValues.Add( name, new __DebugValue( v ) );
+#endif
+		}
+
+		[System.Diagnostics.Conditional( "SADEBUGUTILITY_ENABLED" )]
+		public void _DebugValue( string name, ref Vector3 v )
+		{
+#if UNITY_EDITOR && SADEBUGUTILITY_ENABLED
+			__DebugValue debugValue;
+			if( _debugValues.TryGetValue( name, out debugValue ) ) {
+				v = debugValue.vector3Value;
 				return;
 			}
 
@@ -453,6 +633,7 @@ namespace SA
 			Int,
 			Float,
 			Bool,
+			Vector3,
 		}
 
 		public class __DebugValue
@@ -462,29 +643,30 @@ namespace SA
 			public int intValue;
 			public float floatValue;
 			public bool boolValue;
+			public Vector3 vector3Value;
 
 			public __DebugValue( int i )
 			{
 				this.valueType = __DebugValueType.Int;
-				this.intValue = i;
-				this.floatValue = (float)i;
-				this.boolValue = (i != 0);
+				this.boolValue = false;
 			}
 
 			public __DebugValue( float f )
 			{
 				this.valueType = __DebugValueType.Float;
-				this.intValue = (int)f;
 				this.floatValue = f;
-				this.boolValue = (f != 0.0f);
 			}
 
 			public __DebugValue( bool b )
 			{
 				this.valueType = __DebugValueType.Bool;
-				this.intValue = b ? 1 : 0;
-				this.floatValue = b ? 1.0f : 0.0f;
 				this.boolValue = b;
+			}
+
+			public __DebugValue( Vector3 v )
+			{
+				this.valueType = __DebugValueType.Vector3;
+				this.vector3Value = v;
 			}
 		}
 

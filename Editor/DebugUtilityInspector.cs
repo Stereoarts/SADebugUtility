@@ -37,7 +37,14 @@ namespace SA
 				case DebugUtility.__DebugValueType.Bool:
 					v.boolValue = EditorGUILayout.Toggle( debugValue.Key, debugValue.Value.boolValue );
 					break;
+				case DebugUtility.__DebugValueType.Vector3:
+					v.vector3Value = EditorGUILayout.Vector3Field( debugValue.Key, debugValue.Value.vector3Value );
+					break;
 				}
+			}
+
+			if( Application.isPlaying ) {
+				EditorUtility.SetDirty( target );
 			}
 #endif
 		}
